@@ -87,6 +87,7 @@ class BottomNavyBar extends StatelessWidget {
             children: items.map((item) {
               var index = items.indexOf(item);
               return GestureDetector(
+                key: item.key,
                 onTap: () => onItemSelected(index),
                 child: _ItemWidget(
                   item: item,
@@ -192,10 +193,14 @@ class BottomNavyBarItem {
   BottomNavyBarItem({
     required this.icon,
     required this.title,
+    this.key,
     this.activeColor = Colors.blue,
     this.textAlign,
     this.inactiveColor,
   });
+
+  /// Defines the button key to allow the bar item clickable from tests.
+  final Key? key;
 
   /// Defines this item's icon which is placed in the right side of the [title].
   final Widget icon;
